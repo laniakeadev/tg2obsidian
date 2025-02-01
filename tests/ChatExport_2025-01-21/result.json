@@ -1,0 +1,326 @@
+{
+ "name": "Test md",
+ "type": "private_channel",
+ "id": 123,
+ "messages": [
+  {
+   "id": 1,
+   "type": "service",
+   "date": "2025-01-21T18:52:30",
+   "date_unixtime": "1737474750",
+   "actor": "Test md",
+   "actor_id": "channel123",
+   "action": "create_channel",
+   "title": "Test md",
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 2,
+   "type": "message",
+   "date": "2025-01-21T18:52:47",
+   "date_unixtime": "1737474767",
+   "from": "Test md",
+   "from_id": "channel123",
+   "file": "files/test-sound.ogg",
+   "file_name": "test-sound.ogg",
+   "media_type": "audio_file",
+   "mime_type": "audio/x-vorbis+ogg",
+   "duration_seconds": 1,
+   "text": "01",
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "01"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "type": "message",
+   "date": "2025-01-21T18:52:53",
+   "date_unixtime": "1737474773",
+   "from": "Test md",
+   "from_id": "channel123",
+   "photo": "photos/photo_1@21-01-2025_18-52-53.jpg",
+   "width": 801,
+   "height": 526,
+   "text": "02",
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "02"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "type": "message",
+   "date": "2025-01-21T18:52:58",
+   "date_unixtime": "1737474778",
+   "from": "Test md",
+   "from_id": "channel123",
+   "file": "files/photo_1@12-11-2020_12-57-31.jpg",
+   "file_name": "photo_1@12-11-2020_12-57-31.jpg",
+   "thumbnail": "files/photo_1@12-11-2020_12-57-31.jpg_thumb.jpg",
+   "mime_type": "image/jpeg",
+   "width": 801,
+   "height": 526,
+   "text": "03",
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "03"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "type": "message",
+   "date": "2025-01-21T18:53:03",
+   "date_unixtime": "1737474783",
+   "from": "Test md",
+   "from_id": "channel123",
+   "file": "voice_messages/audio_1@12-11-2020_13-01-05.ogg",
+   "file_name": "audio_1@12-11-2020_13-01-05.ogg",
+   "media_type": "voice_message",
+   "mime_type": "audio/ogg",
+   "duration_seconds": 2,
+   "text": "04",
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "04"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "type": "message",
+   "date": "2025-01-21T18:54:31",
+   "date_unixtime": "1737474871",
+   "from": "Test md",
+   "from_id": "channel123",
+   "file": "voice_messages/audio_1@21-01-2025_18-54-31.ogg",
+   "media_type": "voice_message",
+   "mime_type": "audio/ogg",
+   "duration_seconds": 7,
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 8,
+   "type": "message",
+   "date": "2025-01-21T18:56:50",
+   "date_unixtime": "1737475010",
+   "edited": "2025-01-21T18:57:22",
+   "edited_unixtime": "1737475042",
+   "from": "Test md",
+   "from_id": "channel123",
+   "text": [
+    "Plain\n",
+    {
+     "type": "bold",
+     "text": "Bold"
+    },
+    "\n",
+    {
+     "type": "italic",
+     "text": "italic"
+    },
+    " \n",
+    {
+     "type": "underline",
+     "text": "under"
+    },
+    "\n",
+    {
+     "type": "strikethrough",
+     "text": "strike"
+    },
+    "\n",
+    {
+     "type": "spoiler",
+     "text": "spoiler"
+    },
+    "\n",
+    {
+     "type": "text_link",
+     "text": "Link",
+     "href": "https://github.com/"
+    },
+    "\n👍🏻\n\n",
+    {
+     "type": "hashtag",
+     "text": "#tag1"
+    },
+    " ",
+    {
+     "type": "hashtag",
+     "text": "#tag2"
+    },
+    "\n\n",
+    {
+     "type": "pre",
+     "text": "Mono",
+     "language": ""
+    },
+    "\n",
+    {
+     "type": "blockquote",
+     "text": "Quote",
+     "collapsed": false
+    },
+    ""
+   ],
+   "text_entities": [
+    {
+     "type": "plain",
+     "text": "Plain\n"
+    },
+    {
+     "type": "bold",
+     "text": "Bold"
+    },
+    {
+     "type": "plain",
+     "text": "\n"
+    },
+    {
+     "type": "italic",
+     "text": "italic"
+    },
+    {
+     "type": "plain",
+     "text": " \n"
+    },
+    {
+     "type": "underline",
+     "text": "under"
+    },
+    {
+     "type": "plain",
+     "text": "\n"
+    },
+    {
+     "type": "strikethrough",
+     "text": "strike"
+    },
+    {
+     "type": "plain",
+     "text": "\n"
+    },
+    {
+     "type": "spoiler",
+     "text": "spoiler"
+    },
+    {
+     "type": "plain",
+     "text": "\n"
+    },
+    {
+     "type": "text_link",
+     "text": "Link",
+     "href": "https://github.com/"
+    },
+    {
+     "type": "plain",
+     "text": "\n👍🏻\n\n"
+    },
+    {
+     "type": "hashtag",
+     "text": "#tag1"
+    },
+    {
+     "type": "plain",
+     "text": " "
+    },
+    {
+     "type": "hashtag",
+     "text": "#tag2"
+    },
+    {
+     "type": "plain",
+     "text": "\n\n"
+    },
+    {
+     "type": "pre",
+     "text": "Mono",
+     "language": ""
+    },
+    {
+     "type": "plain",
+     "text": "\n"
+    },
+    {
+     "type": "blockquote",
+     "text": "Quote",
+     "collapsed": false
+    },
+    {
+     "type": "plain",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "type": "message",
+   "date": "2025-01-21T18:57:39",
+   "date_unixtime": "1737475059",
+   "from": "Test md",
+   "from_id": "channel123",
+   "file": "video_files/24.1080.eebf765ed7cc2900_23.mp4",
+   "file_name": "24.1080.eebf765ed7cc2900_23.mp4",
+   "thumbnail": "video_files/24.1080.eebf765ed7cc2900_23.mp4_thumb.jpg",
+   "media_type": "animation",
+   "mime_type": "video/mp4",
+   "duration_seconds": 2,
+   "width": 960,
+   "height": 720,
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 11,
+   "type": "service",
+   "date": "2025-01-21T18:58:17",
+   "date_unixtime": "1737475097",
+   "actor": "Test md",
+   "actor_id": "channel123",
+   "action": "group_call",
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 12,
+   "type": "service",
+   "date": "2025-01-21T18:58:21",
+   "date_unixtime": "1737475101",
+   "actor": "Test md",
+   "actor_id": "channel123",
+   "action": "group_call",
+   "duration": 4,
+   "text": "",
+   "text_entities": []
+  },
+  {
+   "id": 13,
+   "type": "message",
+   "date": "2025-01-21T18:58:53",
+   "date_unixtime": "1737475133",
+   "from": "Test md",
+   "from_id": "channel123",
+   "file": "stickers/AnimatedSticker.tgs",
+   "file_name": "AnimatedSticker.tgs",
+   "thumbnail": "stickers/AnimatedSticker.tgs_thumb.jpg",
+   "media_type": "sticker",
+   "sticker_emoji": "☺️",
+   "mime_type": "application/x-tgsticker",
+   "width": 512,
+   "height": 512,
+   "text": "",
+   "text_entities": []
+  }
+ ]
+}
