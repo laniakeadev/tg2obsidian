@@ -16,6 +16,8 @@ import os
 import sys
 import json
 import logging
+import shutil
+from pathlib import Path
 from datetime import datetime
 
 log = logging.getLogger(__name__)
@@ -47,17 +49,17 @@ def print_default_post_header(post, user_id):
 
     if 'from_id' in post:
         if post['from_id'] != f'user{user_id}':
-            from_header = "from: '{name}' ({user_id})\n"
+            from_header = "from: \"'{name}' ({user_id})\"\n"
             post_header += from_header.format(name=post['from'], user_id=post['from_id'])
 
     if 'forwarded_from' in post:
-        post_header += "forwarded\\_from: '{}'\n".format(post['forwarded_from'])
+        post_header += "forwarded\\_from: \"'{}\"'\n".format(post['forwarded_from'])
 
     if 'saved_from' in post:
-        post_header += "saved\\_from: '{}'\n".format(post['saved_from'])
+        post_header += "saved\\_from: \"'{}\"'\n".format(post['saved_from'])
 
     post_header += 'layout: post\n'\
-                   '---\n'
+                   '---'
 
     return post_header
 
@@ -75,13 +77,16 @@ def print_custom_post_header(post_header_file, *args):
     return post_header_content
 
 
-def parse_post_photo(post, photo_dir):
+def parse_post_photo(post, photo_dir, out_dir):
 
     '''
     converts photo tag to markdown image link
     '''
-
+    photo_dir = os.path.join(photo_dir, post['photo'])
     post_photo = '![image]({src})\n\n'.format(src=post['photo'])
+    destination_path = os.path.join(out_dir, 'photos')
+    Path(destination_path).mkdir(parents=True, exist_ok=True)
+    shutil.copy(photo_dir, destination_path)
 
     return post_photo
 
@@ -114,7 +119,7 @@ def parse_post_media(post, media_dir):
     return post_media
 
 
-def parse_post(post, photo_dir, media_dir, stickers_dir):
+def parse_post(post, photo_dir, media_dir, stickers_dir, out_dir):
 
     '''
     converts post object to formatted text
@@ -124,7 +129,7 @@ def parse_post(post, photo_dir, media_dir, stickers_dir):
 
     # optional image
     if 'photo' in post:
-        post_output += str(parse_post_photo(post, photo_dir))
+        post_output += str(parse_post_photo(post, photo_dir, out_dir))
 
     # optional media
     if 'media_type' in post:
@@ -150,7 +155,8 @@ def main():
 
     # load json file
     try:
-        with open(args.json, 'r', encoding='utf-8') as f:
+        json_path = os.path.join(args.path, 'result.json')
+        with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
     except FileNotFoundError:
         sys.exit('result.json not found.\nPlease, specify right file')
@@ -158,6 +164,8 @@ def main():
     # load messages and user_id
     user_id = data['id']
     raw_posts = data['messages']
+
+    photo_dir = args.path
 
     for post in raw_posts:
         if post['type'] == 'message':
@@ -170,7 +178,7 @@ def main():
             # const auto text = QString::fromUtf8(data.v);
             with open(post_path, 'w', encoding='utf-8') as f:
                 print(print_default_post_header(post, user_id), file=f)
-                print(parse_post(post, args.photo_dir, args.media_dir, args.stickers_dir), file=f)
+                print(parse_post(post, photo_dir, args.media_dir, args.stickers_dir, args.out_dir), file=f)
 
         elif post['type'] == 'service' and post['action'] == 'clear_history':
             log.debug("The type of post #%i is 'service' and the action is 'clear_history'.", \

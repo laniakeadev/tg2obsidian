@@ -3,3 +3,4 @@ formatted_posts/
 !README.md
 !LICENSE.md
 /__pycache__
+tests/Out/.obsidian

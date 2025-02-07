@@ -10,8 +10,8 @@ def create():
             description='Convert exported Telegram channel data json to \
                     bunch of markdown posts ready to use with Obsidian')
     parser.add_argument(
-            'json', metavar='json_file',
-            help='result.json file from telegram export')
+            'path', metavar='path',
+            help='folder that contains result.json file from telegram export')
     parser.add_argument(
             '--out-dir', metavar='out_dir',
             nargs='?', default='formatted_posts',
