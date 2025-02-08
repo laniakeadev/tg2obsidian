@@ -12,6 +12,7 @@
 import src.args_parser as args_parser
 import src.post_parser as post_parser
 import src.frontmatter_creator as frontmatter_creator
+import src.metadata_creator as metadata_creator
 
 import os
 import sys
@@ -65,6 +66,8 @@ def main():
     logging.basicConfig(format='%(asctime)s %(levelname)s %(name)s - %(message)s', \
                         level=args.log_level.upper())
 
+    metadata_creator.check(args.out_dir)
+    
     try:
         os.mkdir(args.out_dir)
     except FileExistsError:
@@ -76,6 +79,7 @@ def main():
     raw_posts = data['messages']
 
     parse_raw_posts(raw_posts, args, user_id)
+    metadata_creator.write_metadata(args.out_dir)
 
 
 if __name__ == '__main__':
