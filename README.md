@@ -36,7 +36,7 @@ To convert your posts to markdown files you need to run `tg2md.py` program
 which takes path to folder that contain `result.json` file as first argument.
 
 ```console
-$ python tg2md.py path/to/
+$ python main.py path/to/
 ```
 
 By default it will create `formatted_posts` directory in your current directory
@@ -44,7 +44,7 @@ and populate it with markdown files. If you want to specify other location,
 use `--out-dir` flag
 
 ```console
-$ python tg2md.py path/to/ --out-dir path/to/post/output
+$ python main.py path/to/ --out-dir path/to/post/output
 ```
 
 ## Known issues
