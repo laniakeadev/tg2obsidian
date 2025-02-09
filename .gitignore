@@ -5,3 +5,4 @@ formatted_posts/
 /__pycache__
 tests/Out/.obsidian
 */__pycache__
+tests/Out

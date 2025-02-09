@@ -2,7 +2,7 @@
 
 ## Preamble
 
-Obsessed with Telegram (three-letters project) privacy issues but binded with it your life or have favourite bloggers that don't use secure services? With this script you can **make a migration of some channel or saved messages** to your local knowledge system with a single command.
+Concerned with Telegram (three-letters project) privacy issues but binded with it your life or have favourite bloggers that don't use secure services? With this script you can **make a migration of a channel or saved messages** to your local knowledge system with a single command.
 
 This script parses output from Telegram channel and converts each post to post in markdown, files used in Obsidian and [other note-taking apps](https://www.markdownguide.org/tools/) that use Markdown (Joplin, Simplenote)
 
@@ -32,8 +32,8 @@ only photos, voice messages and audio files.
 In format menu you should specify 'Machine-readable JSON' file and then
 locate to directory of your desire.
 
-To convert your posts to markdown files you need to run `tg2md.py` program
-which takes path to folder that contain `result.json` file as first argument.
+To convert your posts to markdown files you need to run `main.py` script from cmd or PowerShell
+which takes path to folder that contain folder with `result.json` file as first argument.
 
 ```console
 $ python main.py path/to/
@@ -48,7 +48,6 @@ $ python main.py path/to/ --out-dir path/to/post/output
 ```
 
 ## Known issues
-- Wrong tag formatting
 - Troubles with notes naming
 - Limited flexibility
 - Limited logging

@@ -10,7 +10,7 @@ def parse_tags(text_entities):
     tags = []
     for obj in text_entities:
         if obj['type'] == 'hashtag':
-            tags.append(obj['text'])
+            tags.append('\n  - '+obj['text'].lstrip('#'))
 
     return ' '.join(tags)
 
