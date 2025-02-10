@@ -1,6 +1,5 @@
 import argparse
 import logging
-from datetime import datetime
 
 log = logging.getLogger(__name__)
 
@@ -18,10 +17,15 @@ def create():
             help='output directory for markdown files\
                     (default: formatted_posts)')
     parser.add_argument(
+            '--name-style', metavar='name_style',
+            nargs='?', default='first_sentences',
+            help='***')
+    parser.add_argument(
             '--log-level', metavar='log_level',
             nargs='?', default='warn',
             help='Set the logging level (e.g., debug, info, warning,\
                     error, critical)')
+    
     
     args_wip = parser.add_argument_group('work in progress')
     args_wip.add_argument(
@@ -41,11 +45,5 @@ def create():
             help='location of media files. this changes only links\
                     to files in markdown text, so specify your \
                     desired location (default: files)')
-    args_wip.add_argument(
-            '--stickers-dir', metavar='stickers_dir',
-            nargs='?', default='stickers',
-            help='location of sticker files. this changes only links\
-                    to stickers in markdown text, so specify your \
-                    desired location (default: stickers)')
     
     return parser

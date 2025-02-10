@@ -10,7 +10,7 @@ def parse_tags(text_entities):
     tags = []
     for obj in text_entities:
         if obj['type'] == 'hashtag':
-            tags.append('\n  - '+obj['text'].lstrip('#'))
+            tags.append('\n  - ' + obj['text'].lstrip('#'))
 
     return ' '.join(tags)
 
@@ -29,7 +29,7 @@ def parse_post_photo(post, photo_dir, out_dir):
     return post_photo
 
 # TODO: do not parse the sequence 'hashtag' 'plain' 'hashtag' 'plain' $
-def parse_post_text(post, stickers_dir):
+def parse_post_text(post):
     # TODO: handle reply-to
     post_id = post['id']
     post_raw_text = post['text_entities']
@@ -41,7 +41,7 @@ def parse_post_text(post, stickers_dir):
     for obj in post_raw_text:
         if isinstance(post_raw_text, str):
             post_parsed_text += obj
-        elif (text := text_parser.parse_text_object(post_id, obj, stickers_dir)) is not None:
+        elif (text := text_parser.parse_text_object(post_id, obj)) is not None:
             post_parsed_text += str(text)
 
     return post_parsed_text
@@ -57,7 +57,7 @@ def parse_post_media(post, media_dir):
     return post_media
 
 
-def parse_post(post, photo_dir, media_dir, stickers_dir, out_dir):
+def parse_post(post, photo_dir, media_dir, out_dir):
 
     '''
     converts post object to formatted text
@@ -65,6 +65,9 @@ def parse_post(post, photo_dir, media_dir, stickers_dir, out_dir):
 
     post_output = ''
 
+    if 'media_type' in post and post['media_type'] == 'sticker':
+        return "Stickers output is not supported"
+        
     # optional image
     if 'photo' in post:
         post_output += str(parse_post_photo(post, photo_dir, out_dir))
@@ -74,6 +77,6 @@ def parse_post(post, photo_dir, media_dir, stickers_dir, out_dir):
         post_output += str(parse_post_media(post, media_dir))
 
     # post text
-    post_output += str(parse_post_text(post, stickers_dir))
+    post_output += str(parse_post_text(post))
 
-    return post_output
+    return post_output.strip()

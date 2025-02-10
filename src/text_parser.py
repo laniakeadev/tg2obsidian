@@ -62,7 +62,7 @@ def text_link_format(text, link):
 
     return link_fmt
 
-def parse_text_object(post_id, obj, stickers_dir):
+def parse_text_object(post_id, obj):
 
     # https://github.com/telegramdesktop/tdesktop/blob/7e071c770f7691ffdbbbd38ac3e17c9aae4d21b3/Telegram/SourceFiles/export/output/export_output_json.cpp#L164-L189
     '''

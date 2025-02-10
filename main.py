@@ -13,6 +13,7 @@ import src.args_parser as args_parser
 import src.post_parser as post_parser
 import src.frontmatter_creator as frontmatter_creator
 import src.metadata_creator as metadata_creator
+import src.title_and_filename_creator as title_and_filename_creator
 
 import os
 import sys
@@ -29,7 +30,7 @@ def load_json(args):
             data = json.load(f)
             return data
     except FileNotFoundError:
-        sys.exit('result.json not found.\nPlease, specify right file')  
+        sys.exit('result.json not found.\nPlease, specify right path')  
 
 def parse_raw_posts(raw_posts, args, user_id):
     photo_dir = args.path
@@ -49,15 +50,19 @@ def parse_raw_posts(raw_posts, args, user_id):
 
 def parse_message(post, args, user_id, photo_dir):
     post_date = datetime.fromisoformat(post['date'])
-    post_filename = str(post_date.date()) + '-' + str(post['id']) + '.md'
+    post_filename = title_and_filename_creator.get_default(post_date.date(), post['id'])
     post_path = os.path.join(args.out_dir, post_filename)
-
+    
+    parsed_text = post_parser.parse_post(post, photo_dir, args.media_dir, args.out_dir)
+    
     # https://github.com/telegramdesktop/tdesktop/blob/7e071c770f7691ffdbbbd38ac3e17c9aae4d21b3/Telegram/SourceFiles/export/data/export_data_types.cpp#L244
     # const auto text = QString::fromUtf8(data.v);
     with open(post_path, 'w', encoding='utf-8') as f:
         print(frontmatter_creator.create(post, user_id), file=f)
-        print(post_parser.parse_post(post, photo_dir, args.media_dir, args.stickers_dir, args.out_dir), file=f)
+        print(parsed_text, file=f)
 
+    # TODO: correct names for media-only posts
+    # title_and_filename_creator.rename_file_based_on_content(post_path, parsed_text, True, args.out_dir)
 
 def main():
 
