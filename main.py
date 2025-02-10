@@ -23,6 +23,15 @@ from datetime import datetime
 
 log = logging.getLogger(__name__)
 
+base_dir = ""
+
+def set_base_dir():
+    global base_dir
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+def get_config_path(name):
+    return os.path.join(base_dir, "configs", name + ".json")
+
 def load_json(args):
     try:
         json_path = os.path.join(args.path, 'result.json')
@@ -49,11 +58,11 @@ def parse_raw_posts(raw_posts, args, user_id):
 
 
 def parse_message(post, args, user_id, photo_dir):
-    post_date = datetime.fromisoformat(post['date'])
-    post_filename = title_and_filename_creator.get_default(post_date.date(), post['id'])
-    post_path = os.path.join(args.out_dir, post_filename)
-    
     parsed_text = post_parser.parse_post(post, photo_dir, args.media_dir, args.out_dir)
+    post_date = datetime.fromisoformat(post['date'])
+    post_filename = title_and_filename_creator.get_filename_based_on_content(parsed_text, False, args.out_dir)
+    post_path = os.path.join(args.out_dir, post_filename)
+
     
     # https://github.com/telegramdesktop/tdesktop/blob/7e071c770f7691ffdbbbd38ac3e17c9aae4d21b3/Telegram/SourceFiles/export/data/export_data_types.cpp#L244
     # const auto text = QString::fromUtf8(data.v);
@@ -62,16 +71,18 @@ def parse_message(post, args, user_id, photo_dir):
         print(parsed_text, file=f)
 
     # TODO: correct names for media-only posts
-    # title_and_filename_creator.rename_file_based_on_content(post_path, parsed_text, True, args.out_dir)
+    
 
 def main():
-
+    set_base_dir()
+    
     args = args_parser.create().parse_args()
 
     logging.basicConfig(format='%(asctime)s %(levelname)s %(name)s - %(message)s', \
                         level=args.log_level.upper())
 
     metadata_creator.check(args.out_dir)
+    title_and_filename_creator.initialize(get_config_path("title_replace_symbols"))
     
     try:
         os.mkdir(args.out_dir)

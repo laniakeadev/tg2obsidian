@@ -3,6 +3,16 @@ import src.post_parser as post_parser
 import logging
 from datetime import datetime
 
+include_time = False
+
+def get_date(initial_date):
+    date_iso = datetime.fromisoformat(initial_date)
+    
+    if include_time:
+        return
+    else:
+        return date_iso.date()
+
 def create(post, user_id):
 
     '''
@@ -10,7 +20,7 @@ def create(post, user_id):
     '''
 
     post_id = post['id']
-    post_date = datetime.fromisoformat(post['date'])
+    post_date = get_date(post['date'])
     post_tags = post_parser.parse_tags(post['text_entities'])
 
     # TODO: support for custom header
