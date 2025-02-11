@@ -15,16 +15,16 @@ def parse_tags(text_entities):
     return ' '.join(tags)
 
 
-def parse_post_photo(post, photo_dir, out_dir):
+def parse_post_photo(post, dir, out_dir):
 
     '''
     converts photo tag to markdown image link
     '''
-    photo_dir = os.path.join(photo_dir, post['photo'])
     post_photo = '![image]({src})\n\n'.format(src=post['photo'])
+    source_dir = os.path.join(dir, post['photo'])
     destination_path = os.path.join(out_dir, 'photos')
     Path(destination_path).mkdir(parents=True, exist_ok=True)
-    shutil.copy(photo_dir, destination_path)
+    shutil.copy(source_dir, destination_path)
 
     return post_photo
 
@@ -46,7 +46,7 @@ def parse_post_text(post):
 
     return post_parsed_text
 
-def parse_post_media(post, media_dir):
+def parse_post_media(post):
 
     '''
     wraps file links to Obsidian link
@@ -57,7 +57,7 @@ def parse_post_media(post, media_dir):
     return post_media
 
 
-def parse_post(post, photo_dir, media_dir, out_dir):
+def parse_post(post, dir, out_dir):
 
     '''
     converts post object to formatted text
@@ -70,11 +70,11 @@ def parse_post(post, photo_dir, media_dir, out_dir):
         
     # optional image
     if 'photo' in post:
-        post_output += str(parse_post_photo(post, photo_dir, out_dir))
+        post_output += str(parse_post_photo(post, dir, out_dir))
 
     # optional media
     if 'media_type' in post:
-        post_output += str(parse_post_media(post, media_dir))
+        post_output += str(parse_post_media(post))
 
     # post text
     post_output += str(parse_post_text(post))

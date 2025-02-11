@@ -33,17 +33,5 @@ def create():
             nargs='?',
             help='yaml front matter for your posts \
                     (now doesn\'t work)')
-    args_wip.add_argument(
-            '--photo-dir', metavar='photo_dir',
-            nargs='?', default='photos',
-            help='location of image files. this changes only links\
-                    to photos in markdown text, so specify your\
-                    desired location (default: photos)')
-    args_wip.add_argument(
-            '--media-dir', metavar='media_dir',
-            nargs='?', default='files',
-            help='location of media files. this changes only links\
-                    to files in markdown text, so specify your \
-                    desired location (default: files)')
     
     return parser

@@ -58,7 +58,7 @@ def parse_raw_posts(raw_posts, args, user_id):
 
 
 def parse_message(post, args, user_id, photo_dir):
-    parsed_text = post_parser.parse_post(post, photo_dir, args.media_dir, args.out_dir)
+    parsed_text = post_parser.parse_post(post, photo_dir, args.out_dir)
     post_date = datetime.fromisoformat(post['date'])
     post_filename = title_and_filename_creator.get_filename_based_on_content(parsed_text, False, args.out_dir)
     post_path = os.path.join(args.out_dir, post_filename)
