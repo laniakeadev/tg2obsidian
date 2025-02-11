@@ -71,10 +71,5 @@ def fix_invalid_filename(text):
     
 
 def load_config(config_path):
-    if not os.path.exists(config_path):
-        print(f"Файл не найден: {config_path}")
-        print(f"Текущая директория: {os.getcwd()}")
-    else:
-        print(f"Файл найден: {config_path}")
     with open(config_path, "r", encoding="utf-8") as file:
         return json.load(file)

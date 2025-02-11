@@ -2,16 +2,22 @@ import src.post_parser as post_parser
 
 import logging
 from datetime import datetime
+import platform
 
-include_time = False
+include_time = True
 
 def get_date(initial_date):
     date_iso = datetime.fromisoformat(initial_date)
     
     if include_time:
-        return
+        if platform.system() == 'Linux':
+            return date_iso.strftime('%Y-%m-%d, %-H:%M')
+        elif platform.system() == 'Windows':
+            return date_iso.strftime('%Y-%m-%d, %#H:%M')
+        else:
+            return date_iso.strftime('%Y-%m-%d, %-H:%M')
     else:
-        return date_iso.date()
+        return date_iso.strftime('%Y-%m-%d')
 
 def create(post, user_id):
 
