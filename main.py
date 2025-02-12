@@ -42,11 +42,10 @@ def load_json(args):
         sys.exit('result.json not found.\nPlease, specify right path')  
 
 def parse_raw_posts(raw_posts, args, user_id):
-    photo_dir = args.path
 
     for post in raw_posts:
         if post['type'] == 'message':
-            parse_message(post, args, user_id, photo_dir)
+            parse_message(post, args, user_id)
 
         elif post['type'] == 'service' and post['action'] == 'clear_history':
             log.debug("The type of post #%i is 'service' and the action is 'clear_history'.", \
@@ -57,8 +56,8 @@ def parse_raw_posts(raw_posts, args, user_id):
                          post['id'], post['type'])
 
 
-def parse_message(post, args, user_id, photo_dir):
-    parsed_text = post_parser.parse_post(post, photo_dir, args.out_dir)
+def parse_message(post, args, user_id):
+    parsed_text = post_parser.parse_post(post, args.path, args.out_dir)
     post_date = datetime.fromisoformat(post['date'])
     post_filename = title_and_filename_creator.get_filename_based_on_content(parsed_text, False, args.out_dir)
     post_path = os.path.join(args.out_dir, post_filename)
