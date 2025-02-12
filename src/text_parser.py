@@ -130,7 +130,7 @@ def parse_text_object(post_id, obj):
         return f'![{obj_text}]({document_id})\n\n'
 
     elif obj_type == 'spoiler':
-        return f'> [!info]\n> {obj_text}\n\n'
+        return f'=={obj_text}=='
 
     elif obj_type == 'hashtag':
         return None
