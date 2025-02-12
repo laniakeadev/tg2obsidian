@@ -32,12 +32,16 @@ only photos, voice messages and audio files.
 In format menu you should specify 'Machine-readable JSON' file and then
 locate to directory of your desire.
 
+Clone the repository or download main.py, /src/ and /configs/ (keeping the structure)
+
 To convert your posts to markdown files you need to run `main.py` script from cmd or PowerShell
 which takes path to folder that contain folder with `result.json` file as first argument.
 
 ```console
 $ python main.py path/to/
 ```
+
+`-h` to list help
 
 By default it will create `formatted_posts` directory in your current directory
 and populate it with markdown files. If you want to specify other location,
@@ -48,9 +52,16 @@ $ python main.py path/to/ --out-dir path/to/post/output
 ```
 
 ## Known issues
-- Troubles with notes naming
 - Limited flexibility
+- Nested formatting is not supported
 - Limited logging
+
+## To do
+- Parse nested formatting
+- Divide my primary post type
+- Calculate hashes
+- Expand config options
+- Ability to run immediatly with preset config
 
 ## Original author
 
