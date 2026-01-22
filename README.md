@@ -52,6 +52,7 @@ $ python main.py path/to/ --out-dir path/to/post/output
 ```
 
 ## Known issues
+— Works wrong without specifying `--out-dir`
 - Limited flexibility
 - Nested formatting is not supported
 - Limited logging
